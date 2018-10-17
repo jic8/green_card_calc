@@ -1,0 +1,257 @@
+
+.noUi-target,
+.noUi-target * {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-ms-touch-action: none;
+-ms-user-select: none;
+-moz-user-select: none;
+-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.noUi-target {
+	position: relative;
+	direction: ltr;
+}
+.noUi-base {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 1; /* Fix 401 */
+}
+.noUi-origin {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+.noUi-handle {
+	position: relative;
+	z-index: 1;
+}
+.noUi-stacking .noUi-handle {
+/* This class is applied to the lower origin when
+   its values is > 50%. */
+	z-index: 10;
+}
+.noUi-state-tap .noUi-origin {
+-webkit-transition: left 0.3s, top 0.3s;
+	transition: left 0.3s, top 0.3s;
+}
+.noUi-state-drag * {
+	cursor: inherit !important;
+}
+
+/* Painting and performance;
+ * Browsers can paint handles in their own layer.
+ */
+.noUi-base {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	height: 3px;
+}
+
+/* Slider size and handle placement */
+.noUi-horizontal {
+	height: 4px;
+}
+.noUi-horizontal .noUi-handle {
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	left: -14px;
+	top: -14px;
+}
+.noUi-vertical {
+	width: 18px;
+}
+.noUi-vertical .noUi-handle {
+	width: 28px;
+	height: 34px;
+	left: -6px;
+	top: -17px;
+}
+/* Styling*/
+
+.noUi-connect {
+	transition: background 450ms;
+}
+.noUi-origin {
+	border-radius: 2px;
+}
+/* Handles and cursors;
+ */
+.noUi-dragable {
+	cursor: w-resize;
+}
+.noUi-vertical .noUi-dragable {
+	cursor: n-resize;
+}
+.noUi-handle {
+	cursor: default;
+}
+.noUi-active {
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+.noUi-vertical .noUi-handle:before,
+.noUi-vertical .noUi-handle:after {
+	width: 14px;
+	height: 1px;
+	left: 6px;
+	top: 14px;
+}
+.noUi-vertical .noUi-handle:after {
+	top: 17px;
+}
+/* Disabled state;
+ */
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+	background: #B8B8B8;
+}
+[disabled].noUi-origin,
+[disabled] .noUi-handle {
+	cursor: not-allowed;
+}
+.visma-page--container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #007ACA;
+  color: #fff; }
+
+.epi-col {
+  float: left;
+  width: 50%;
+  padding: 50px; }
+
+* {
+  box-sizing: border-box; }
+
+html {
+  font-size: 18px; }
+
+p {
+  line-height: inherit; }
+
+ul {
+  line-height: 2em; }
+
+.center {
+  text-align: center; }
+
+/*=========================================================================================
+  author: ieva.ozolite@visma.com
+  works in: IE 9, Chrome, Firefox, Safari
+  created: 20.05.2018.
+===========================================================================================*/
+/*Slider override plugin*/
+.slider-autoinvoice-module {
+  line-height: 1; }
+  .slider-autoinvoice-module[data-color="light-blue"] {
+    color: #B9DCFF; }
+    .slider-autoinvoice-module[data-color="light-blue"] .noUi-handle {
+      background: #B9DCFF; }
+    .slider-autoinvoice-module[data-color="light-blue"] .noUi-horizontal .noUi-handle {
+      height: 26px;
+      width: 26px;
+      border-radius: 100%;
+      top: 0;
+      left: 0;
+      cursor: pointer; }
+      .slider-autoinvoice-module[data-color="light-blue"] .noUi-horizontal .noUi-handle:focus {
+        outline: 1px solid transparent; }
+
+.noUi-tooltip {
+  line-height: 1;
+  padding-top: 3px;
+  transform: translate(-50%, 100%);
+  text-align: center;
+  min-width: 150px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  color: #fff; }
+
+/*Problem: visually bar should be thin, but tap target should have height: if user clicks/taps on bar need "height > 1px", visually style as 1px bar*/
+/*Make el height = drag handle height (26px)*/
+.noUi-base {
+  height: 26px;
+  background: transparent;
+  cursor: pointer; }
+
+.noUi-background {
+  background: transparent; }
+
+/*add pseido el and move up "drag handle / 2" */
+.noUi-horizontal {
+  height: auto; }
+  .noUi-horizontal::after {
+    content: "";
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #B9DCFF;
+    transform: translateY(-13px); }
+
+/*Slider style*/
+.autoinvoice-box {
+  font-family: "PFBeauSansProThin", Tahoma, Arial, Helvetica, Verdana, Sans-Serif;
+  max-width: 41.66667rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5em 0; }
+
+.autoinvoice-box--description {
+  margin-bottom: 3.33333em; }
+
+.slider-autoinvoice,
+.slider-autoinvoice--result p {
+  font-size: 1.44444em; }
+
+.slider-autoinvoice {
+  margin-bottom: 3.65385em; }
+
+.slider-autoinvoice--label {
+  line-height: 1;
+  font-size: inherit;
+  padding-bottom: 0.69231em;
+  margin: 0; }
+
+.slider-autoinvoice--slider-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: inherit;
+  margin: 0 0 -22px 0; }
+
+.slider-autoinvoice--result span {
+  display: block;
+  padding-bottom: 10px; }
+.slider-autoinvoice--result span:first-child {
+  border-bottom: 1px solid #B9DCFF; }
+
+#slider-result {
+  color: #fff;
+  font-size: 1.84615em;
+  padding-top: 20px; }
+
+@media screen and (min-width: 31.25em) {
+  .slider-autoinvoice--result p {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #B9DCFF; }
+    .slider-autoinvoice--result p span:first-child {
+      border-bottom: none; }
+
+  #slider-result {
+    padding-top: 0; }
+
+  .slider-autoinvoice {
+    margin-bottom: 4.53846em; }
+
+  .autoinvoice-box p:last-child {
+    margin-bottom: 3.33333em; }
+
+  .autoinvoice-box--description {
+    margin-bottom: 4.16667em; } }

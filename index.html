@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="visma-page--container">
+    <div class="autoinvoice-box">
+
+      <!-- Efficiency calculator -->
+      <div class="slider-autoinvoice-module" data-color="light-blue">
+        <div class="slider-autoinvoice">
+          <p class="slider-autoinvoice--label">Стоимость имущества</p>
+          <p class="slider-autoinvoice--slider-scale">
+            <span>100 000</span>
+            <span>1 000 000</span>
+          </p>
+          <div id="slider-autoinvoice-invoices" class="slider-autoinvoice--slider">&nbsp;</div>
+        </div>
+        <div class="slider-autoinvoice">
+          <p class="slider-autoinvoice--label">Срок займа</p>
+          <p class="slider-autoinvoice--slider-scale">
+            <span>1</span>
+            <span>12</span>
+          </p>
+          <div id="slider-autoinvoice-digital" class="slider-autoinvoice--slider">&nbsp;</div>
+        </div>
+        <div class="slider-autoinvoice--result">
+          <p>
+            <span class="slider-autoinvoice--result-label">ВЫ ПОЛУЧИТЕ:</span>
+            <span id="slider-result">&nbsp;</span>
+          </p>
+        </div>
+        <!-- calculation result-->
+      </div>
+      <!-- end efficiency calculator -->
+    </div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
+<script src="script.js"></script>
+</body>
+
+</html>
