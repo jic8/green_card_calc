@@ -5,48 +5,190 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Игра в грин-карту, поиск счастливой секунды</title>
 </head>
 
 <body>
-  <div class="visma-page--container">
-    <div class="autoinvoice-box">
+  <div class="ap">
+    <header class="app"></header>
+    <main>
+      <label for="quantity">Сколько раз должен выпасть орел?</label>
+      <input type="text" name="quantity" class="quantity" placeholder="Введи число" required type="number">
+      <button type="button" class="start">Начать</button>
+    </main>
 
-      <!-- Efficiency calculator -->
-      <div class="slider-autoinvoice-module" data-color="light-blue">
-        <div class="slider-autoinvoice">
-          <p class="slider-autoinvoice--label">Стоимость имущества</p>
-          <p class="slider-autoinvoice--slider-scale">
-            <span>100 000</span>
-            <span>1 000 000</span>
-          </p>
-          <div id="slider-autoinvoice-invoices" class="slider-autoinvoice--slider">&nbsp;</div>
-        </div>
-        <div class="slider-autoinvoice">
-          <p class="slider-autoinvoice--label">Срок займа</p>
-          <p class="slider-autoinvoice--slider-scale">
-            <span>1</span>
-            <span>12</span>
-          </p>
-          <div id="slider-autoinvoice-digital" class="slider-autoinvoice--slider">&nbsp;</div>
-        </div>
-        <div class="slider-autoinvoice--result">
-          <p>
-            <span class="slider-autoinvoice--result-label">ВЫ ПОЛУЧИТЕ:</span>
-            <span id="slider-result">&nbsp;</span>
-          </p>
-        </div>
-        <!-- calculation result-->
-      </div>
-      <!-- end efficiency calculator -->
+    <div class="timer">
+      <span id="hours">0</span>:
+      <span id="minutes">0</span>:
+      <span id="seconds">0</span>
     </div>
-
+    <button type="button" class="startTimer">Запустить секундомер</button>
+    <span class="timer_text hide">На заполнение  заявки на грин-карту даеться дается 30 минут.</span>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.1.0/wNumb.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
-<script src="script.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    .timer {
+      margin-top: 5vh;
+    }
+
+    .ap {
+      text-align: center;
+      margin-top: 10vh;
+    }
+    .hide{
+      display: none;
+    }
+    button {
+      background-color: #f4bf1aff;
+      border: none;
+      padding: 5px;
+      color: #fff;
+      cursor: pointer;
+      margin: 20px auto;
+    }
+    label{
+        margin-bottom: 20px;
+    }
+    input {
+      border: none;
+      max-width: 150px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .app {
+      display: flex;
+      align-items: center;
+      width: 35%;
+      margin: 0 auto;
+    }
+  .load{
+    pointer-events: none;
+    outline: none;
+  }
+    .app span {
+      width: 50%;
+      font-size: 8rem;
+      font-family: sans-serif;
+      color: #ccc;
+    }
+
+    .app img {
+      width: 250px;
+    }
+    main{
+      display: flex;
+      flex-direction: column;
+    }
+    main input{
+      width: 30vw;
+      margin: 0 auto;
+    }
+    .timer{
+      margin: 100px 0 0;
+    }
+    .timer_text{
+      margin-top: 30px;
+    }
+    .enter {
+      animation: op 1s infinite;
+    }
+
+    @keyframes op {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <script>
+    var app = document.querySelector('.app'),
+      startBtn = document.querySelector('.start'),
+      startTimer = document.querySelector('.startTimer'),
+      inputq = document.querySelector('.quantity'),
+      timerText = document.querySelector('.timer_text');
+
+    startBtn.onclick = function() {
+      let quantity = inputq.value,
+          quantityLern = quantity.length;
+
+      if (quantityLern != 0) {
+        startBtn.innerHTML ="<span class='enter'>Подкидную монетку...</span>";
+        startBtn.className = 'load';
+        let i = 0;
+          quantityNam = parseInt(quantity, 10),
+          dash = setInterval(function() {
+            let ar = getRandomInt(0, 2);
+            if (ar == 1) {
+              i++;
+              if (i == 1) {
+                app.innerHTML = '<img src="drawing.svg" alt="Выпал орел"/>'
+                console.log(i);
+              } else if (i == quantityNam) {
+                clearTimeout(dash);
+                app.innerHTML = '<audio src="usa.mp3" autoplay></audio>' +
+                  '<img src="good-luck.svg" alt="Отправляй заявку!"/>' +
+                  '<span style="font-size: 4rem;">Отправляй заявку!</span>';
+                app.classList.remove("enter");
+                startBtn.innerHTML ="<span class='enter'>Отправляй заявку!</span>";
+                console.log(i);
+              } else {
+                app.innerHTML = '<img src="drawing.svg" alt="Выпал орел"/>' + '<span> X' + i + "</span>";
+                console.log(i);
+              }
+            } else {
+              i = 0;
+              app.innerHTML = '<img src="dol.svg" alt="Выпала решка"/>';
+              app.classList.toggle("enter");
+              console.log("Сброс");
+            }
+
+          }, 1000);
+      }else {
+        alert("Пустая строка не катит")
+      }
+
+
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      };
+
+    }
+
+    let h = document.querySelector('#hours'),
+        m = document.querySelector('#minutes'),
+        s = document.querySelector('#seconds');
+    startTimer.onclick = function() {
+      timerText.classList.remove('hide');
+      startTimer.classList.add('hide');
+      timerText.style.display = 'inline-block';
+      // start
+      let sec = 00, min = 00,hour = 00;
+
+      function clock() {
+        sec++;
+        h.innerHTML = hour;
+        m.innerHTML = min;
+        s.innerHTML = sec;
+
+        if (sec == 60) {
+          sec = 00;
+          min++;
+        }
+        if (min == 60) {
+          min = 00;
+          hour++;
+        }
+      };
+      window.setInterval(clock, 1000);
+      // fihish
+  }
+  </script>
 </body>
 
 </html>
